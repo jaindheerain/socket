@@ -14,8 +14,16 @@ var io=socket(server); // when ever i make this var /socket.io/socket.io.js this
 
 app.use('/',express.static('public_static'));
 
-io.on('connection',function () {
+io.on('connection',function (socket) {//every thing is now defined on the argument of the call after the connection
    console.log("Connection established by the io socket");
+   socket.on('disconnect',function () {
+       console.log("Disconccee");
+   })
+    socket.on('rec_message',function (data) {
+        console.log(data);
+    })
+
+    // now every lister will be implimented on teh arugemt of the call back
 });
 
 server.listen(5000,function () {
