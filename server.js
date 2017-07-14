@@ -20,6 +20,8 @@ io.on('connection',function (socket) {//every thing is now defined on the argume
        console.log("Disconccee");
    })
     socket.on('rec_message',function (data) {
+
+        io.emit('get',data);//if we write io.broadcast.emit then teh message is recived by the user but we can not see the message we passsed
         console.log(data);
     })
 

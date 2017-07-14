@@ -12,5 +12,16 @@
 
 $(function () {
     var socket=io();
-    socket.emit('rec_message',new Date().getTime());
+    $('#btn').click(function () {
+
+        var inp =$('#inp').val();
+        socket.emit('rec_message',inp);
+
+    });
+
+    socket.on('get',function (data) {
+        var msg= '<li>' +data+'</li>'
+        $('#message').append(msg);
+        console.log(data);
+    })
 });
