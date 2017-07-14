@@ -9,18 +9,19 @@
 /*what happens here si that ewhen we insatll the cocket module the file is hosted at a ceratain port
 * this port is local host and this file is present at the server*/
 
+var username=prompt("Please enter  your name ");
 
 $(function () {
     var socket=io();
     $('#btn').click(function () {
 
         var inp =$('#inp').val();
-        socket.emit('rec_message',inp);
+        socket.emit('rec_message',{name : username , input:inp});
 
     });
 
     socket.on('get',function (data) {
-        var msg= '<li>' +data+'</li>'
+        var msg= '<li>' +data.name+'  '+data.input+' </li>'
         $('#message').append(msg);
         console.log(data);
     })
